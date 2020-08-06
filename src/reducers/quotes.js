@@ -1,6 +1,7 @@
 
  
  export default (state = [], action) =>{
+   debugger
    let index
    let quote 
   switch (action.type){
@@ -10,7 +11,7 @@
       return state.filter(quote => quote.id !== action.quoteId)   
       
     case "UPVOTE_QUOTE":
-      index = state.findIndex(quote => quote.id === action.quoteid)
+      index = state.findIndex(quote => quote.id === action.quoteId)
       quote = state[index]
       return  [ // we are removing and replacing 
                 ...state.slice(0, index),
@@ -19,7 +20,7 @@
               ];
 
     case "DOWNVOTE_QUOTE":
-      index = state.findIndex(quote => quote.id === action.quoteid)
+      index = state.findIndex(quote => quote.id === action.quoteId)
       quote = state[index]
       if (quote.votes > 0) {
         return  [ // we are removing and replacing 
