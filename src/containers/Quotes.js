@@ -6,7 +6,7 @@ class Quotes extends Component {
 
   render() {
     let quotes = this.props.quotes.map(quote => {
-      return <QuoteCard key={quote.id} quote={quote}  removeQuote={removeQuote} upvoteQuote={upvoteQuote} downvoteQuote={downvoteQuote}/>
+      return <QuoteCard key={quote.id} quote={quote}  removeQuote={this.props.removeQuote} upvoteQuote={this.props.upvoteQuote} downvoteQuote={this.props.downvoteQuote}/>
     })
     return (
       <div>
@@ -39,4 +39,12 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { removeQuote, upvoteQuote, downvoteQuote })(Quotes);
+const mapDispatchToProps = dispatch => {
+  return {
+    removeQuote: (quoteId) => {dispatch(removeQuote(quoteId))},
+    upvoteQuote: (quoteId) => {dispatch(upvoteQuote(quoteId))},
+    downvoteQuote: (quoteId) => {dispatch(downvoteQuote(quoteId))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quotes);
